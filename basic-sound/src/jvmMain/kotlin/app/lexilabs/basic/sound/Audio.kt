@@ -38,7 +38,7 @@ public actual class Audio actual constructor(): AudioBuilder {
             _audioState.value = AudioState.LOADING
 
             val stream = if (resource.substring(0, 4) == "http") {
-                AudioSystem.getAudioInputStream(Path(resource).toUri().toURL())
+                AudioSystem.getAudioInputStream(URI.create(resource).toURL())
                     ?: throw IllegalStateException("load:The URL provided was invalid or failed to load")
             } else {
                 AudioSystem.getAudioInputStream(File(resource).absoluteFile)
